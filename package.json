@@ -1,0 +1,41 @@
+{
+  "name": "browser-path",
+  "version": "1.0.0",
+  "description": "A port of 'path' for cortex from node.js, make your node code run in browsers.",
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "tape": "2.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cortexjs/browser-path.git"
+  },
+  "testling": {
+    "files": "test/*.js",
+    "browsers": [
+      "ie/6..latest",
+      "chrome/4..latest",
+      "firefox/3..latest",
+      "safari/5.1..latest",
+      "opera/11.0..latest",
+      "iphone/6..latest",
+      "ipad/6..latest",
+      "android-browser/4.2"
+    ]
+  },
+  "cortex":{
+
+  },
+  "keywords": [
+    "path",
+    "compatible",
+    "browser"
+  ],
+  "author": "villa.gao <villa.gao@dianping.com>",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "license": "MIT"
+}
