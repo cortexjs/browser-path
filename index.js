@@ -19,7 +19,17 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-var util = require('util');
+// TODO: how to handle process
+
+var process = process || {
+    cwd: function() {
+        return (typeof window !== 'undefined' && window.location.pathname) || "";
+    }
+};
+
+function isString(obj) {
+    return typeof obj === 'string';
+}
 
 // resolves . and .. elements in a path array with directory names there
 // must be no slashes, empty elements, or device names (c:\) in the array
@@ -70,7 +80,7 @@ exports.resolve = function() {
         var path = (i >= 0) ? arguments[i] : process.cwd();
 
         // Skip empty and invalid entries
-        if (!util.isString(path)) {
+        if (!isString(path)) {
             throw new TypeError('Arguments to path.resolve must be strings');
         } else if (!path) {
             continue;
@@ -121,7 +131,7 @@ exports.isAbsolute = function(path) {
 exports.join = function() {
     var paths = Array.prototype.slice.call(arguments, 0);
     return exports.normalize(paths.filter(function(p, index) {
-        if (!util.isString(p)) {
+        if (!isString(p)) {
             throw new TypeError('Arguments to path.join must be strings');
         }
         return p;

@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "A port of 'path' for cortex from node.js, make your node code run in browsers.",
   "main": "index.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "tape": "2.x"
+    "mocha": "~1.15.1"
   },
   "repository": {
     "type": "git",
@@ -14,6 +13,7 @@
   },
   "testling": {
     "files": "test/*.js",
+    "harness": "mocha",
     "browsers": [
       "ie/6..latest",
       "chrome/4..latest",
@@ -25,9 +25,7 @@
       "android-browser/4.2"
     ]
   },
-  "cortex":{
-
-  },
+  "cortex": {},
   "keywords": [
     "path",
     "compatible",
