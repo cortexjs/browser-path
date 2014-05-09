@@ -20,16 +20,19 @@
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-if(typeof process === 'undefined' && window) {
-    window.process = {
+var _process;
+if(typeof process === 'undefined') {
+    _process = {
         env: {},
         cwd: function() {
             return (typeof window !== 'undefined' && window.location.pathname) || "";
         }
     };
+}else {
+    _process = process;
 }
 
-var isWindows = false && (process.platform === 'win32');
+var isWindows = false && (_process.platform === 'win32');
 
 function isString(obj) {
     return typeof obj === 'string';
@@ -108,13 +111,13 @@ if (isWindows) {
       if (i >= 0) {
         path = arguments[i];
       } else if (!resolvedDevice) {
-        path = process.cwd();
+        path = _process.cwd();
       } else {
         // Windows has the concept of drive-specific current working
         // directories. If we've resolved a drive letter but not yet an
         // absolute path, get cwd for that drive. We're sure the device is not
         // an unc path at this points, because unc paths are always absolute.
-        path = process.env['=' + resolvedDevice];
+        path = _process.env['=' + resolvedDevice];
         // Verify that a drive-local cwd was found and that it actually points
         // to our drive. If not, default to the drive's root.
         if (!path || path.substr(0, 3).toLowerCase() !==
@@ -332,7 +335,7 @@ if (isWindows) {
         resolvedAbsolute = false;
 
     for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
-      var path = (i >= 0) ? arguments[i] : process.cwd();
+      var path = (i >= 0) ? arguments[i] : _process.cwd();
       // Skip empty and invalid entries
       if (!isString(path)) {
         throw new TypeError('Arguments to path.resolve must be strings');
