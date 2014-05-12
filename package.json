@@ -1,5 +1,5 @@
 {
-  "name": "browser-path",
+  "name": "path",
   "version": "1.0.0",
   "description": "A port of 'path' for cortex from node.js, make your node code run in browsers.",
   "main": "index.js",
