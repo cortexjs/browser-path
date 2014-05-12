@@ -1,4 +1,4 @@
-var path = require('../'),
+var path = require('../index'),
     assert = require('assert');
 
 describe('path', function() {
